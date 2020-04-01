@@ -8,12 +8,13 @@
 template <typename T>
 
 class Matrix {
-private:
     int n;
     int m;
     T** p;
 public:
-    Matrix(int n, int m);
+    ~Matrix();
+    Matrix(const Matrix& M);
+    Matrix(int m, int n);
     int get_rows() const;
     int get_columns() const;
     Matrix& operator()(Matrix& M);
@@ -27,6 +28,12 @@ public:
     T det(Matrix& M);
     Matrix Inverse();
 };
+Matrix<T>::~Matrix(){
+    for (int i = 0; i < n; i++){
+        free(p[i]);
+    }
+    free(p);
+}
 template<class T>
 int Matrix<T>::get_rows() const {
     return n;
@@ -36,7 +43,7 @@ int Matrix<T>::get_columns() const {
     return m;
 }
 template<class T>
-Matrix<T>::Matrix(int n, int m) {
+Matrix<T>::Matrix(int m, int n) {
     this -> p = reinterpret_cast<T**>(malloc(n * sizeof(T*)));
     this->n = n;
     this->m = m;
@@ -46,6 +53,18 @@ Matrix<T>::Matrix(int n, int m) {
             p[i][j] = 0;
         }
     }
+}
+template<class T>
+Matrix<T>::Matrix(const Matrix& M){
+ n = M.get_columns();
+ m = M.get_rows();
+ this -> p = reinterpret_cast<T**>(malloc(n * sizeof(T*)));
+ for (int i = 0 ; i < M.get_rows ; i++){
+  p[i] = reinterpret_cast<T*>(malloc(m * sizeof(T)));
+  for (int j = 0 ; j < copy.Cols() ; j++){
+   p[i][j] = copy[i][j];
+  }
+ }
 }
 template<class T>
 Matrix<T>& Matrix<T>::operator ()(Matrix& M) {
