@@ -37,11 +37,11 @@ int Matrix<T>::get_columns() const {
 }
 template<class T>
 Matrix<T>::Matrix(int n, int m) {
-    this->ptr = (T**)malloc(n * sizeof(T*));
+    this -> p = reinterpret_cast<T**>(malloc(n * sizeof(T*)));
     this->n = n;
     this->m = m;
     for (int i = 0; i < n; i++) {
-        ptr[i] = (T*)malloc(m * sizeof(T));
+        p[i] = reinterpret_cast<T*>(malloc(m * sizeof(T)));
         for (int j = 0; j < m; j++) {
             p[i][j] = 0;
         }
@@ -58,7 +58,7 @@ Matrix<T>& Matrix<T>::operator ()(Matrix& M) {
 template<class T>
 T* Matrix<T>::operator [](int i) const {
     return p[i];
-};
+}
 template<class T>
 Matrix<T>& Matrix<T>::operator =(Matrix& M) {
     for (int i = 0; i < M.get_rows; i++) {
@@ -69,7 +69,8 @@ Matrix<T>& Matrix<T>::operator =(Matrix& M) {
 }
 template<class T>
 Matrix<T> Matrix<T>::operator+(Matrix& M) {
-    if ((*this).get_columns != M.get_columns || (*this).get_rows != M.get_rows) return 0;
+    if ((*this).get_columns != M.get_columns ||
+     (*this).get_rows != M.get_rows) return 0;
     Matrix<T> K[M.get_rows][M.get_columns];
     for (int i = 0; i < M.get_rows; i++) {
         for (int j = 0; j < (*this).get_columns; j++) {
@@ -80,7 +81,8 @@ Matrix<T> Matrix<T>::operator+(Matrix& M) {
 }
 template<class T>
 Matrix<T> Matrix<T>::operator-(Matrix& M) {
-    if ((*this).get_columns != M.get_columns || (*this).get_rows != M.get_rows) return 0;
+    if ((*this).get_columns != M.get_columns ||
+    (*this).get_rows != M.get_rows) return 0;
     Matrix<T> K[M.get_rows][M.get_columns];
     for (int i = 0; i < M.get_rows; i++) {
         for (int j = 0; j < (*this).get_columns; j++) {
@@ -165,3 +167,5 @@ Matrix<T> Matrix<T>::Inverse() {
     M = (1 / Det) * M;
     return M;
 }
+            
+#endif // INCLUDE_MATRIX_HPP_
