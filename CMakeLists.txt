@@ -39,7 +39,7 @@ add_executable(lab4
         )
 
 # TODO: change template word to project name and delete this comment
-target_include_directories(main
+target_include_directories(lab4
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
 target_include_directories(lab4
