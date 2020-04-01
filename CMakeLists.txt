@@ -42,7 +42,7 @@ add_executable(lab4
 target_include_directories(lab4
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
-target_include_directories(lab4
+target_include_directories(tests
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
 
