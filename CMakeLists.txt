@@ -20,7 +20,7 @@ HunterGate(
 
 
 # TODO: rename project and delete this comment
-project(templates)
+project(lab4)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wnon-virtual-dtor")
@@ -31,9 +31,10 @@ find_package(GTest CONFIG REQUIRED)
 add_executable(tests
         # TODO: enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/matrix_unittests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/matrix.hpp
         )
 
-add_executable(main
+add_executable(lab4
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
         )
 
@@ -41,7 +42,7 @@ add_executable(main
 target_include_directories(main
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
-target_include_directories(tests
+target_include_directories(lab4
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
 
@@ -56,7 +57,7 @@ if (BUILD_COVERAGE)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
     find_package(codecov)
     # TODO: change template word to project name and delete this comment
-    add_coverage(main)
+    add_coverage(lab4)
     add_coverage(tests)
     list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/tests/*'")
     coverage_evaluate()
