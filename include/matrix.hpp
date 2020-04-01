@@ -167,5 +167,5 @@ Matrix<T> Matrix<T>::Inverse() {
     M = (1 / Det) * M;
     return M;
 }
-            
+
 #endif // INCLUDE_MATRIX_HPP_
