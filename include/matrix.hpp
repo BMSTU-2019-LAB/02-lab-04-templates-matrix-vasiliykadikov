@@ -26,9 +26,7 @@ public:
     Matrix deletemn(Matrix<T> &M, int row, int column);
     T det(Matrix<T> &M);
     Matrix Inverse();
-    template<class T>
     friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
-    template<class T>
     friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
 };
 template<class T>
