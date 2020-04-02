@@ -135,7 +135,6 @@ Matrix<T> Matrix<T>::operator*(Matrix& M) {
     }
     return K;
 }
-
 template<class T>
 Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
    Matrix<T> K(M.get_rows() - 1, M.get_columns() - 1);
@@ -171,7 +170,7 @@ T Matrix<T>::det(Matrix& M) {
         return Det;
     }
     for (int i = 0; i < M.ges_rows; i++) {
-       Det += M[0][i] * pow (-1, i) * det(deletemn(M, 0, i));
+        Det += M[0][i] * pow(-1, i) * det(deletemn(M, 0, i));
    }
 }
 template<class T>
@@ -183,7 +182,8 @@ Matrix<T> Matrix<T>::Inverse() {
     Matrix<T> K((*this).get_rows(), (*this).get_columns());
     for (int i = 0; i < ((*this).get_rows()); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-            K[i][j] = pow(-1, i+j) * (*this)[i][j] * det(deletemn((*this), i, j));
+            K[i][j] = pow(-1, i+j) * (*this)[i][j] * det(
+                deletemn((*this), i, j));
         }
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
