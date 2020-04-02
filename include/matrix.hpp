@@ -174,7 +174,7 @@ double Matrix<T>::det() {
     }
     for (int i = 0; i < (*this).get_rows(); i++) {
         Det += (*this)[0][i] * pow(-1, i)
-             * det(deletemn((*this), 0, i));
+             * det(deletemn(*this, 0, i));
    }
     return Det;
 }
@@ -188,7 +188,7 @@ Matrix<T> Matrix<T>::Inverse() {
     Matrix<T> K((*this).get_rows(), (*this).get_columns());
     for (int i = 0; i < ((*this).get_rows()); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-         Ad = det(deletemn((*this), i, j);
+         Ad = det(deletemn(*this, i, j));
          K[i][j] = pow(-1, i+j) * (*this)[i][j] * Ad;
         }
     }
@@ -198,7 +198,7 @@ Matrix<T> Matrix<T>::Inverse() {
             M[i][j] = K[j][i];
         }
     }
-    T Det = det((*this));
+    T Det = det(*this);
     double Detrev = 1 / Det;
     for (int i = 0; i < (*this).get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
