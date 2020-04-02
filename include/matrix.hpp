@@ -17,17 +17,17 @@ public:
     Matrix(int m, int n);
     int get_rows() const;
     int get_columns() const;
-    Matrix& operator()(Matrix M);
+    Matrix& operator()(Matrix<T> &M);
     T* operator [](size_t i) const;
-    Matrix& operator=(Matrix M);
-    Matrix operator+(Matrix M);
-    Matrix operator-(Matrix M);
-    Matrix operator*(Matrix M);
-    Matrix deletemn(Matrix M, int row, int column);
-    T det(Matrix M);
+    Matrix& operator=(Matrix<T> &M);
+    Matrix operator+(Matrix<T> &M);
+    Matrix operator-(Matrix<T> &M);
+    Matrix operator*(Matrix<T> &M);
+    Matrix deletemn(Matrix<T> &M, int row, int column);
+    T det(Matrix<T> &M);
     Matrix Inverse();
-    bool Matrix operator ==(const Matrix M);
-    bool Matrix operator !=(const Matrix M);
+    bool Matrix operator ==(const Matrix<T> &M);
+    bool Matrix operator !=(const Matrix<T> &M);
 };
 template<class T>
 Matrix<T>::~Matrix(){
@@ -57,7 +57,7 @@ Matrix<T>::Matrix(int m, int n) {
     }
 }
 template<class T>
-Matrix<T>::Matrix(const Matrix<T> M) {
+Matrix<T>::Matrix(const Matrix<T> &M) {
  n = M.get_columns();
  m = M.get_rows();
  this -> p = reinterpret_cast<T**>(malloc(n * sizeof(T*)));
@@ -69,7 +69,7 @@ Matrix<T>::Matrix(const Matrix<T> M) {
  }
 }
 template<class T>
-Matrix<T>& Matrix<T>::operator ()(Matrix<T> M) {
+Matrix<T>& Matrix<T>::operator ()(Matrix<T> &M) {
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
             (*this)[i][j] = M[i][j];
@@ -81,7 +81,7 @@ T* Matrix<T>::operator [](size_t i) const {
     return p[i];
 }
 template<class T>
-Matrix<T>& Matrix<T>::operator =(Matrix<T> M) {
+Matrix<T>& Matrix<T>::operator =(Matrix<T> &M) {
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
             (*this)[i][j] = M[i][j];
@@ -90,7 +90,7 @@ Matrix<T>& Matrix<T>::operator =(Matrix<T> M) {
     return (*this);
 }
 template<class T>
-Matrix<T> Matrix<T>::operator+(Matrix<T> M) {
+Matrix<T> Matrix<T>::operator+(Matrix<T> &M) {
     if ((*this).get_columns() != M.get_columns() ||
      (*this).get_rows() != M.get_rows()) {
         Matrix<T> a(0, 0);
@@ -105,7 +105,7 @@ Matrix<T> Matrix<T>::operator+(Matrix<T> M) {
     return K;
 }
 template<class T>
-Matrix<T> Matrix<T>::operator-(Matrix<T> M) {
+Matrix<T> Matrix<T>::operator-(Matrix<T> &M) {
     if ((*this).get_columns() != M.get_columns() ||
     (*this).get_rows() != M.get_rows()) {
         Matrix<T> a(0, 0);
@@ -120,7 +120,7 @@ Matrix<T> Matrix<T>::operator-(Matrix<T> M) {
     return K;
 }
 template<class T>
-Matrix<T> Matrix<T>::operator*(Matrix<T> M) {
+Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
     if ((*this).get_rows() != M.get_columns()) {
         Matrix<T> a(0, 0);
         return a;
@@ -138,7 +138,7 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> M) {
     return K;
 }
 template<class T>
-Matrix<T> Matrix<T>::deletemn(Matrix<T> M, int row, int column) {
+Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
    Matrix<T> K(M.get_rows() - 1, M.get_columns() - 1);
    int a = row-1;
    int b = column-1;
@@ -161,7 +161,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> M, int row, int column) {
     return K;
 }
 template<class T>
-T Matrix<T>::det(Matrix<T> M) {
+T Matrix<T>::det(Matrix<T> &M) {
     T Det;
     if (M.get_rows() == 1) {
         Det = M[0][0];
@@ -204,7 +204,7 @@ Matrix<T> Matrix<T>::Inverse() {
     return M;
 }
 template<class T>
-bool Matrix<T>::operator ==(const Matrix<T> M) {
+bool Matrix<T>::operator ==(const Matrix<T> &M) {
     if ((*this).get_rows != M.get_rows() &&
         (this).get_columns() != M.get_columns())
         return false;
@@ -216,7 +216,7 @@ bool Matrix<T>::operator ==(const Matrix<T> M) {
     return true;
 }
 template<class T>
-bool Matrix<T>::operator !=(const Matrix<T> M) {
+bool Matrix<T>::operator !=(const Matrix<T> &M) {
     if ((*this).get_rows != M.get_rows() &&
         (this).get_columns() != M.get_columns())
         return true;
