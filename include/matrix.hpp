@@ -85,6 +85,7 @@ Matrix<T>& Matrix<T>::operator =(Matrix& M) {
             (*this)[i][j] = M[i][j];
         }
     }
+    return (*this);
 }
 template<class T>
 Matrix<T> Matrix<T>::operator+(Matrix& M) {
@@ -118,7 +119,9 @@ Matrix<T> Matrix<T>::operator-(Matrix& M) {
 }
 template<class T>
 Matrix<T> Matrix<T>::operator*(Matrix& M) {
-    if ((*this).get_rows() != M.get_columns()) return 0;
+    if ((*this).get_rows() != M.get_columns()) {
+        Matrix<T> a(0, 0);
+        return a;
     Matrix<T> K((*this).get_columns(), M.get_rows());
     int n = 0;
     for (int i = 0; i < ((*this).get_columns()); i++) {
@@ -135,7 +138,7 @@ Matrix<T> Matrix<T>::operator*(Matrix& M) {
 
 template<class T>
 Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
-   Matrix<T> K(M.get_rows() - 1, M.columns() - 1);
+   Matrix<T> K(M.get_rows() - 1, M.get_columns() - 1);
    int a = row-1;
    int b = column-1;
         for (int i = 0; i < a; i++) {
@@ -168,7 +171,7 @@ T Matrix<T>::det(Matrix& M) {
         return Det;
     }
     for (int i = 0; i < M.ges_rows; i++) {
-        Det += M[0][i] * pow (-1, i) * det(deletemn(M, 0, i));
+       Det += M[0][i] * pow (-1, i) * det(deletemn(M, 0, i));
    }
 }
 template<class T>
@@ -178,9 +181,9 @@ Matrix<T> Matrix<T>::Inverse() {
         return a;
     }
     Matrix<T> K((*this).get_rows(), (*this).get_columns());
-    for (int i = 0; i < (*this).get_rows(); i++) {
+    for (int i = 0; i < ((*this).get_rows()); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-            K[i][j] = pow(-1, i+j) * (*this)[i][j] * deletemn((*this), i, j);
+            K[i][j] = pow(-1, i+j) * (*this)[i][j] * det(deletemn((*this), i, j));
         }
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
@@ -190,7 +193,7 @@ Matrix<T> Matrix<T>::Inverse() {
         }
     }
     T Det = det((*this));
-    double Detrev=1/Det;
+    double Detrev = 1 / Det;
     for (int i = 0; i < (*this).get_rows; i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
             M[i][j] = Detrev * K[i][j];
