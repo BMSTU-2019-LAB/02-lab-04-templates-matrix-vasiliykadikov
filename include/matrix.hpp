@@ -90,7 +90,7 @@ Matrix<T>& Matrix<T>::operator =(Matrix& M) {
 template<class T>
 Matrix<T> Matrix<T>::operator+(Matrix& M) {
     if ((*this).get_columns() != M.get_columns() ||
-     (*this).get_rows() != M.get_rows()) { 
+     (*this).get_rows() != M.get_rows()) {
         Matrix<T> a(0, 0);
         return a;
     }
