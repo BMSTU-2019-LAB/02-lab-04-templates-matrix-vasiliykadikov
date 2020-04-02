@@ -215,14 +215,16 @@ bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < M.get_columns(); j++) {
-             if (abs(m0i][j] - M[i][j]) > std::numeric_limits<float>::epsilon()){
+            if (abs(m0i][j] - M[i][j]) 
+            > std::numeric_limits<float>::epsilon()) {
     return false;
+            }
         }
     }
     return true;
 }
 template<class T>
 bool operator !=(const Matrix<T> &M, const Matrix<T> &m) {
-    return !(M==m);
+    return !(M == m);
 }
 #endif // INCLUDE_MATRIX_HPP_
