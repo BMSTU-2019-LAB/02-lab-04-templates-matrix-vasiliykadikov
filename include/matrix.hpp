@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <math.h>
-template <typename T>
+template <class T>
 
 class Matrix {
     int n;
