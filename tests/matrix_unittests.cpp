@@ -124,7 +124,7 @@ TEST(Matrix, Mult) {
     auto s = m * c;
 
     ASSERT_EQ(s.get_rows(), 3);
-    ASSERT_EQ(s.get_columns(), 2);
+    ASSERT_EQ(s.get_rows(), 2);
     /*
     2 0
     2 2
@@ -146,14 +146,14 @@ TEST(Matrix, Mult) {
 TEST(Matrix, Inverse) {
   Matrix<double> m(5, 5);
 
-  for (size_t i = 0; i < m.Rows(); ++i) {
-    for (size_t j = 0; j < m.Rows(); ++j) {
+  for (int i = 0; i < m.get_rows(); ++i) {
+    for (int j = 0; j < m.get_rows(); ++j) {
       m[i][j] = 1 + (i*j)%7;
     }
   }
 
   Matrix<double> I(5, 5);
-  for (size_t i = 0; i < m.Rows(); ++i) {
+  for (int i = 0; i < m.get_rows(); ++i) {
     I[i][i] = 1.;
   }
 
