@@ -186,8 +186,8 @@ Matrix<T> Matrix<T>::Inverse() {
     Matrix<T> K((*this).get_rows(), (*this).get_columns());
     for (int i = 0; i < ((*this).get_rows()); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-            K[i][j] = pow(-1, i+j) * (*this)[i][j] * det(
-                deletemn((*this), i, j));
+            K[i][j] =
+            pow(-1, i+j) * (*this)[i][j] * det(deletemn((*this), i, j));
         }
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
@@ -212,19 +212,19 @@ bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < M.get_columns(); j++) {
-            if m[i][j] != M[i][j] return false;
+            if (m[i][j] != M[i][j]) return false;
         }
     }
     return true;
 }
-template<class N>
+template<class T>
 bool operator !=(const Matrix<T> &M, const Matrix<T> &m) {
     if (m.get_rows != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return true;
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < M.get_columns(); j++) {
-            if m[i][j] != M[i][j] return true;
+            if (m[i][j] != M[i][j]) return true;
         }
     }
     return false;
