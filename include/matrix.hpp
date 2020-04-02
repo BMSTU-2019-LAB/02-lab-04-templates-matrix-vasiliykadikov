@@ -28,6 +28,7 @@ public:
     T det(Matrix& M);
     Matrix Inverse();
 };
+template<class T>
 Matrix<T>::~Matrix(){
     for (int i = 0; i < n; i++){
         free(p[i]);
@@ -69,8 +70,8 @@ Matrix<T>::Matrix(const Matrix& M){
 template<class T>
 Matrix<T>& Matrix<T>::operator ()(Matrix& M) {
     for (int i = 0; i < M.get_rows(); i++) {
-        for (int j = 0; j < T.get_columns(); j++) {
-            K[i][j] = (*this)[i][j] = M[i][j];
+        for (int j = 0; j < (*this).get_columns(); j++) {
+            (*this)[i][j] = M[i][j];
         }
     }
 }
@@ -81,8 +82,8 @@ T* Matrix<T>::operator [](int i) const {
 template<class T>
 Matrix<T>& Matrix<T>::operator =(Matrix& M) {
     for (int i = 0; i < M.get_rows(); i++) {
-        for (int j = 0; j < T.get_columns(); j++) {
-            K[i][j] = (*this)[i][j] = M[i][j];
+        for (int j = 0; j < (*this).get_columns(); j++) {
+            (*this)[i][j] = M[i][j];
         }
     }
 }
@@ -115,12 +116,12 @@ Matrix<T> Matrix<T>::operator*(Matrix& M) {
     if ((*this).get_rows() != M.het_columns()) return 0;
     Matrix<T> K[(*this).get_columns()][M.get_rows()];
     int n = 0;
-    for (int i = 0; i < (*this.get_columns()); i++) {
+    for (int i = 0; i < ((*this).get_columns()); i++) {
         for (int j = 0; j < M.get_rows(); j++) {
             n = 0;
-            k[i][j] = 0;
+            K[i][j] = 0;
             for (int k; k < M.get_columns(); k++) {
-                K[i][j] = k[i][j](*this)[i][k] + M[k][j];
+                K[i][j] = K[i][j] + (*this)[i][k] * M[k][j];
             }
         }
     }
@@ -129,9 +130,11 @@ Matrix<T> Matrix<T>::operator*(Matrix& M) {
 
 template<class T>
 Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
-    K[M.get_rows() - 1][M.columns() - 1]
-        for (int i = 0; i < row - 1; i++) {
-            for (int j = 0; j < column - 1; j++) {
+   Matrix<T> K[M.get_rows() - 1][M.columns() - 1]
+   int a = row-1;
+   int b=column-1
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j < b; j++) {
                 K[i][j] = M[i][j];
             }
             for (int k = column + 1; k < M.get_columns(); k++) {
@@ -139,7 +142,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
             }
         }
     for (int i = row + 1; i < M.get_rows(); i++) {
-        for (int j = 0; j < column - 1; j++) {
+        for (int j = 0; j < b; j++) {
             K[i][j] = M[i][j];
         }
         for (int k = column + 1; k < M.get_columns(); k++) {
@@ -150,7 +153,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
 }
 template<class T>
 Matrix<T> Matrix<T>::ad(Matrix& M, int row, int column) {
-    return (pow(-1, (row + column)) * M[row][column] * deletemn(M, row, column)
+    return (pow(-1, (row + column)) * M[row][column] * deletemn(M, row, column));
 }
 template<class T>
 T Matrix<T>::det(Matrix& M) {
@@ -170,13 +173,13 @@ T Matrix<T>::det(Matrix& M) {
 template<class T>
 Matrix<T> Matrix<T>::Inverse() {
     if ((*this).get_columns() != (*this).get_rows()) return 0;
-    K[(*this).get_rows()][(*this).get_columns()];
+    Matrix<T> K[(*this).get_rows()][(*this).get_columns()];
     for (int i = 0; i < (*this).get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); i++) {
             K[i][j] = ad((*this), i, j);
         }
     }
-    M[(*this).get_rows()][(*this).get_columns()];
+    Matrix<T> M[(*this).get_rows()][(*this).get_columns()];
     for (int i = 0; i < (*this).get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); i++) {
             M[i][j] = K[j][i];
