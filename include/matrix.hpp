@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <limits>
 template <class T>
 
 class Matrix {
@@ -214,21 +215,14 @@ bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < M.get_columns(); j++) {
-            if (m[i][j] != M[i][j]) return false;
+             if (abs(m0i][j] - M[i][j]) > std::numeric_limits<float>::epsilon()){
+    return false;
         }
     }
     return true;
 }
 template<class T>
 bool operator !=(const Matrix<T> &M, const Matrix<T> &m) {
-    if (m.get_rows != M.get_rows() &&
-        m.get_columns() != M.get_columns())
-        return true;
-    for (int i = 0; i < M.get_rows(); i++) {
-        for (int j = 0; j < M.get_columns(); j++) {
-            if (m[i][j] != M[i][j]) return true;
-        }
-    }
-    return false;
+    return !(M==m);
 }
 #endif // INCLUDE_MATRIX_HPP_
