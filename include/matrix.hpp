@@ -163,7 +163,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
 }
 template<class T>
 double Matrix<T>::det(Matrix<T> M) {
-    double Det;
+    double Det = 0;
     if (M.get_rows() == 1) {
         Det = M[0][0];
         return Det;
@@ -198,7 +198,7 @@ Matrix<T> Matrix<T>::Inverse() {
             M[i][j] = K[j][i];
         }
     }
-    T Det = det(*this);
+    double Det = det(*this);
     double Detrev = 1 / Det;
     for (int i = 0; i < (*this).get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
