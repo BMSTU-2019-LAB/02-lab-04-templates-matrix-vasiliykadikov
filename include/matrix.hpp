@@ -124,6 +124,7 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
     if ((*this).get_rows() != M.get_columns()) {
         Matrix<T> a(0, 0);
         return a;
+    }
     Matrix<T> K((*this).get_columns(), M.get_rows());
     int n = 0;
     for (int i = 0; i < ((*this).get_columns()); i++) {
@@ -174,6 +175,7 @@ T Matrix<T>::det(Matrix<T> &M) {
     for (int i = 0; i < M.ges_rows; i++) {
         Det += M[0][i] * pow(-1, i) * det(deletemn(M, 0, i));
    }
+    return Det;
 }
 template<class T>
 Matrix<T> Matrix<T>::Inverse() {
