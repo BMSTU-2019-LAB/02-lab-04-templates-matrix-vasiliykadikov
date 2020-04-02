@@ -24,7 +24,7 @@ public:
     Matrix operator-(Matrix<T> &M);
     Matrix operator*(Matrix<T> &M);
     Matrix deletemn(Matrix<T> &M, int row, int column);
-    double det(Matrix<T> &M);
+    double det();
     Matrix Inverse();
     friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
     friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
@@ -132,7 +132,7 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
             n = 0;
             K[i][j] = 0;
             for (int z=0; z < M.get_columns(); z++) {
-                K[i][j] = K[i][j] + (*this)[i][k] * M[k][j];
+                K[i][j] = K[i][j] + (*this)[i][z] * M[z][j];
             }
         }
     }
@@ -162,19 +162,19 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
     return K;
 }
 template<class T>
-double Matrix<T>::det(Matrix<T> &M) {
+double Matrix<T>::det() {
     double Det;
-    if (M.get_rows() == 1) {
-        Det = M[0][0];
+    if ((*this).get_rows() == 1) {
+        Det = (*this)[0][0];
         return Det;
     }
-    if (M.get_rows() == 2) {
-        Det = M[0][0] * M[1][1] - M[0][1] * M[1][0];
+    if ((*this).get_rows() == 2) {
+        Det = (*this)[0][0] * (*this)[1][1] - (*this)[0][1] * (*this)[1][0];
         return Det;
     }
-    for (int i = 0; i < M.get_rows(); i++) {
-        Det += M[0][i] * pow(-1, i)
-             * det(deletemn(M, 0, i));
+    for (int i = 0; i < (*this).get_rows(); i++) {
+        Det += (*this)[0][i] * pow(-1, i)
+             * det(deletemn((*this), 0, i));
    }
     return Det;
 }
@@ -184,10 +184,12 @@ Matrix<T> Matrix<T>::Inverse() {
         Matrix<T> a(0, 0);
         return a;
     }
+    double Ad;
     Matrix<T> K((*this).get_rows(), (*this).get_columns());
     for (int i = 0; i < ((*this).get_rows()); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-         K[i][j] = pow(-1, i+j) * (*this)[i][j] * det(deletemn((*this), i, j));
+         Ad = det(deletemn((*this), i, j);
+         K[i][j] = pow(-1, i+j) * (*this)[i][j] * Ad;
         }
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
