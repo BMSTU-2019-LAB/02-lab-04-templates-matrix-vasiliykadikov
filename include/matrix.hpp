@@ -26,10 +26,10 @@ public:
     Matrix deletemn(Matrix<T> &M, int row, int column);
     T det(Matrix<T> &M);
     Matrix Inverse();
-    template<class N>
-    friend bool operator ==(const Matrix<N> M, const Matrix<N> m);
-    template<class M>
-    friend bool operator !=(const Matrix<N> M, const Matrix<N> M);
+    template<class T>
+    friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
+    template<class T>
+    friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
 };
 template<class T>
 Matrix<T>::~Matrix(){
@@ -206,7 +206,7 @@ Matrix<T> Matrix<T>::Inverse() {
     return M;
 }
 template<class T>
-bool operator ==(const Matrix<T> M, const Matrix<T> m) {
+bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
     if (m.get_rows != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return false;
@@ -218,7 +218,7 @@ bool operator ==(const Matrix<T> M, const Matrix<T> m) {
     return true;
 }
 template<class N>
-bool operator !=(const Matrix<T> M, const Matrix<T> m) {
+bool operator !=(const Matrix<T> &M, const Matrix<T> &m) {
     if (m.get_rows != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return true;
