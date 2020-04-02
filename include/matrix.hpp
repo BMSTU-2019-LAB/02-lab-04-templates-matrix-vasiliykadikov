@@ -24,7 +24,7 @@ public:
     Matrix operator-(Matrix<T> &M);
     Matrix operator*(Matrix<T> &M);
     Matrix deletemn(Matrix<T> &M, int row, int column);
-    double det();
+    double det(Matrix<T> &M);
     Matrix Inverse();
     friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
     friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
@@ -162,7 +162,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
     return K;
 }
 template<class T>
-double Matrix<T>::det() {
+double Matrix<T>::det(Matrix<T> &M) {
     double Det;
     if ((*this).get_rows() == 1) {
         Det = (*this)[0][0];
