@@ -132,7 +132,7 @@ template<class T>
 Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
    Matrix<T> K[M.get_rows() - 1][M.columns() - 1]
    int a = row-1;
-   int b=column-1
+   int b = column-1;
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < b; j++) {
                 K[i][j] = M[i][j];
@@ -153,7 +153,8 @@ Matrix<T> Matrix<T>::deletemn(Matrix& M, int row, int column) {
 }
 template<class T>
 Matrix<T> Matrix<T>::ad(Matrix& M, int row, int column) {
-    return (pow(-1, (row + column)) * M[row][column] * deletemn(M, row, column));
+    return (pow(-1, (row + column)) * M[row][column] *
+            deletemn(M, row, column));
 }
 template<class T>
 T Matrix<T>::det(Matrix& M) {
