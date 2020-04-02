@@ -26,8 +26,10 @@ public:
     Matrix deletemn(Matrix<T> &M, int row, int column);
     T det(Matrix<T> &M);
     Matrix Inverse();
-    bool Matrix operator ==(const Matrix<T> &M);
-    bool Matrix operator !=(const Matrix<T> &M);
+    template<class N>
+    friend bool operator ==(const Matrix<N> M, const Matrix<N> m);
+    template<class M>
+    friend bool operator !=(const Matrix<N> M, const Matrix<N> M);
 };
 template<class T>
 Matrix<T>::~Matrix(){
@@ -204,25 +206,25 @@ Matrix<T> Matrix<T>::Inverse() {
     return M;
 }
 template<class T>
-bool Matrix<T>::operator ==(const Matrix<T> &M) {
-    if ((*this).get_rows != M.get_rows() &&
-        (this).get_columns() != M.get_columns())
+bool operator ==(const Matrix<T> M, const Matrix<T> m) {
+    if (m.get_rows != M.get_rows() &&
+        m.get_columns() != M.get_columns())
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < M.get_columns(); j++) {
-            if (*this)[i][j] != M[i][j] return false;
+            if m[i][j] != M[i][j] return false;
         }
     }
     return true;
 }
-template<class T>
-bool Matrix<T>::operator !=(const Matrix<T> &M) {
-    if ((*this).get_rows != M.get_rows() &&
-        (this).get_columns() != M.get_columns())
+template<class N>
+bool operator !=(const Matrix<T> M, const Matrix<T> m) {
+    if (m.get_rows != M.get_rows() &&
+        m.get_columns() != M.get_columns())
         return true;
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < M.get_columns(); j++) {
-            if (*this)[i][j] != M[i][j] return true;
+            if m[i][j] != M[i][j] return true;
         }
     }
     return false;
