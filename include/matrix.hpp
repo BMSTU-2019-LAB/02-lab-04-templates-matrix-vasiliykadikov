@@ -84,8 +84,8 @@ Matrix<T>& Matrix<T>::operator ()(Matrix<T> &M) {
     }
 }
 template<class T>
-T* Matrix<T>::operator [](size_t i) const {
-    return p[i];
+T* Matrix<T>::operator [](int i) const {
+    return (*this)[i];
 }
 template<class T>
 Matrix<T>& Matrix<T>::operator =(Matrix<T> &M) {
