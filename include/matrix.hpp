@@ -27,8 +27,10 @@ public:
     Matrix deletemn(Matrix<T> &M, int row, int column);
     double det(Matrix<T> M);
     Matrix Inverse();
-    friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
-    friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
+    template<class V>
+    friend bool operator ==(const Matrix<V> &M, const Matrix<V> &m);
+    template<class V>
+    friend bool operator !=(const Matrix<V> &M, const Matrix<V> &m);
 };
 template<class T>
 Matrix<T>::~Matrix(){
