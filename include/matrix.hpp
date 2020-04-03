@@ -99,7 +99,7 @@ Matrix<T>& Matrix<T>::operator =(Matrix<T> &M) {
     for (int i = 0; i < n; i++) {
         p[i] = new T[m];
     }
-    for (int i = 0; i < M.get_rows(); i++) {
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             this->p[i][j] = M[i][j];
         }
