@@ -28,8 +28,6 @@ public:
     double det(Matrix<T> M);
     Matrix Inverse();
     friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
-    friend bool operator ==(const Matrix<double> &M, const Matrix<double> &m);
-    friend bool operator ==(const Matrix<double> &M, const Matrix<double> &m);
     friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
 };
 template<class T>
