@@ -147,15 +147,18 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
 template<class T>
 Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
    Matrix<T> K(M.get_rows() - 1, M.get_columns() - 1);
-   int a = row;
-   int b = column;
+   int a = 0;
+   int b = 0;
         for (int i = 0; i < M.get_rows(); i++) {
-            if (i != a) {
+            if (i != row) {
                 for (int j = 0; j < M.get_columns(); j++) {
-                    if (i != b) {
-                        K[i][j] = M[i][j];
+                    if (i != column) {
+                        K[a][b] = M[i][j];
+                        b++;
                     }
                 }
+                a++;
+                b = 0;
             }
         }
     return K;
