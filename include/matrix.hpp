@@ -149,22 +149,15 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
    Matrix<T> K(M.get_rows() - 1, M.get_columns() - 1);
    int a = row;
    int b = column;
-        for (int i = 0; i < a; i++) {
-            for (int j = 0; j < b; j++) {
-                K[i][j] = M[i][j];
+        for (int i = 0; i < M.get_rows(); i++) {
+            if (i != a) {
+                for (int j = 0; j < M.get_columns; j++) {
+                    if (i != b) {
+                        K[i][j] = M[i][j];
+                    }
+                }
             }
-            for (int k = b + 1; k < M.get_columns(); k++) {
-                K[i][k] = M[i][k];
-            }
         }
-    for (int i = a + 1; i < M.get_rows(); i++) {
-        for (int j = 0; j < b; j++) {
-            K[i][j] = M[i][j];
-        }
-        for (int k = b + 1; k < M.get_columns(); k++) {
-            K[i][k] = M[i][k];
-        }
-    }
     return K;
 }
 template<class T>
