@@ -10,7 +10,7 @@ TEST(Matrix, Checkrows) {
     m[0][1] = 2;
     m[1][0] = 3;
     m[1][1] = 4;
-    ASSERT_EQ(s.get_rows(), 2);
+    ASSERT_EQ(m.get_rows(), 2);
 }
 TEST(Matrix, Init) {
     Matrix<int> m(2, 2);
