@@ -65,8 +65,8 @@ TEST(Matrix, Add) {
 
     Matrix<int> c = m;
 
-    Matrix<int> s = m + c;
-    Matrix<int> s2 = c + c;
+    Matrix<int> s = (m + c);
+    Matrix<int> s2 = (c + c);
     EXPECT_EQ(s2, s);
 
     ASSERT_EQ(s.get_rows(), 2);
