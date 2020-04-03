@@ -130,7 +130,7 @@ Matrix<T> Matrix<T>::operator-(Matrix<T> &M) {
 }
 template<class T>
 Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
-    if ((*this).get_rows() != M.get_columns()) {
+    if ((*this).get_columns() != M.get_rows()) {
         Matrix<T> a(0, 0);
         return a;
     }
