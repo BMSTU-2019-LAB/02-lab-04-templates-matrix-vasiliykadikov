@@ -34,10 +34,10 @@ public:
 };
 template<class T>
 Matrix<T>::~Matrix(){
-    for (int i = 0; i < m; i++){
-        free(p[i]);
+    for (int i = 0; i < n; i++){
+        delete[] p[i];
     }
-    free(p);
+    delete [p];
 }
 template<class T>
 int Matrix<T>::get_rows() const {
