@@ -89,11 +89,15 @@ T* Matrix<T>::operator [](size_t i) const {
 }
 template<class T>
 Matrix<T>& Matrix<T>::operator =(Matrix<T> &M) {
+    for (int i = 0; i < (*this).get_rows; i++) {
+        delete[] p[i];
+    }
+    delete[] p;
     this->n = M.get_rows();
     this->m = M.get_columns();
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-            (*this)[i][j] = M[i][j];
+            this->p[i][j] = M[i][j];
         }
     }
     return (*this);
