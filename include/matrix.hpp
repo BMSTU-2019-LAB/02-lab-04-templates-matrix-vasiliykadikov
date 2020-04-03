@@ -65,9 +65,9 @@ template<class T>
 Matrix<T>::Matrix(const Matrix<T> &M) {
  this->m = M.get_columns();
  this->n = M.get_rows();
- p = new T *[m];
+ p = new T *[n];
  for (int i = 0 ; i < M.get_rows(); i++){
-  p[i] = new T *[m];
+  p[i] = new T [m];
  }
   for (int i = 0 ; i < M.get_rows() ; i++){
       for (int j = 0; j < M.get_columns(); j++) {
