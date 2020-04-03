@@ -28,6 +28,8 @@ public:
     double det(Matrix<T> M);
     Matrix Inverse();
     friend bool operator ==(const Matrix<T> &M, const Matrix<T> &m);
+    friend bool operator ==(const Matrix<double> &M, const Matrix<double> &m)
+    friend bool operator ==(const Matrix<double> &M, const Matrix<double> &m)
     friend bool operator !=(const Matrix<T> &M, const Matrix<T> &m);
 };
 template<class T>
@@ -210,6 +212,33 @@ Matrix<T> Matrix<T>::Inverse() {
 }
 template<class T>
 bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
+    if (m.get_rows != M.get_rows() &&
+        m.get_columns() != M.get_columns())
+        return false;
+    for (int i = 0; i < M.get_rows(); i++) {
+        for (int j = 0; j < M.get_columns(); j++) {
+            if (M[i][j] != m[i][j]) return false;
+        }
+    }
+    return true;
+}
+template<class T>
+bool operator ==(const Matrix<double> &M, const Matrix<double> &m) {
+    if (m.get_rows != M.get_rows() &&
+        m.get_columns() != M.get_columns())
+        return false;
+    for (int i = 0; i < M.get_rows(); i++) {
+        for (int j = 0; j < M.get_columns(); j++) {
+            if (abs(m[i][j] - M[i][j])
+            > std::numeric_limits<double>::epsilon()) {
+    return false;
+            }
+        }
+    }
+    return true;
+}
+template<class T>
+bool operator ==(const Matrix<float> &M, const Matrix<float> &m) {
     if (m.get_rows != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return false;
