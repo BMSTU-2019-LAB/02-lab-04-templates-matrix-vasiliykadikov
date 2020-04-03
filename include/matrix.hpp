@@ -134,7 +134,7 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
         Matrix<T> a(0, 0);
         return a;
     }
-    Matrix<T> K((*this).get_columns(), M.get_rows());
+    Matrix<T> K((*this).get_rows(), M.get_columns());
     int n = 0;
     for (int i = 0; i < ((*this).get_columns()); i++) {
         for (int j = 0; j < M.get_rows(); j++) {
