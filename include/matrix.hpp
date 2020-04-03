@@ -63,15 +63,17 @@ Matrix<T>::Matrix(int m, int n) {
 }
 template<class T>
 Matrix<T>::Matrix(const Matrix<T> &M) {
- n = M.get_columns();
- m = M.get_rows();
- this -> p = reinterpret_cast<T**>(malloc(n * sizeof(T*)));
+ this->m = M.get_columns();
+ this->n = M.get_rows();
+ p = new T *[m];
  for (int i = 0 ; i < M.get_rows(); i++){
-  p[i] = reinterpret_cast<T*>(malloc(m * sizeof(T)));
-  for (int j = 0 ; j < M.get_columns() ; j++){
-   p[i][j] = M[i][j];
-  }
+  p[i] = new T *[m];
  }
+  for (int i = 0 ; i < M.get_rows() ; i++){
+      for (int j = 0; j < M.get_columns(); j++) {
+   p[i][j] = M[i][j];
+      }
+  }
 }
 template<class T>
 Matrix<T>& Matrix<T>::operator ()(Matrix<T> &M) {
