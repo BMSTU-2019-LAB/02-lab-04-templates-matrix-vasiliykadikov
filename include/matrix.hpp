@@ -187,8 +187,7 @@ double Matrix<T>::det(Matrix<T> M) {
 template<class T>
 Matrix<T> Matrix<T>::Inverse() {
     if ((*this).get_columns() != (*this).get_rows()) {
-        Matrix<T> a(0, 0);
-        return a;
+        return 0;
     }
     double Ad;
     Matrix<T> K((*this).get_rows(), (*this).get_columns());
