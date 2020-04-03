@@ -4,6 +4,14 @@
 
 #include <matrix.hpp>
 
+TEST(Matrix, Checkrows) {
+    Matrix<int> m(2, 2);
+    m[0][0] = 1;
+    m[0][1] = 2;
+    m[1][0] = 3;
+    m[1][1] = 4;
+    ASSERT_EQ(s.get_rows(), 2);
+}
 TEST(Matrix, Init) {
     Matrix<int> m(2, 2);
     m[0][0] = 1;
