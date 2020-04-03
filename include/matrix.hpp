@@ -149,8 +149,8 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
    Matrix<T> K(M.get_rows() - 1, M.get_columns() - 1);
    int a = row;
    int b = column;
-        for (int i = 0; i < a - 1; i++) {
-            for (int j = 0; j < b - 1; j++) {
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j < b; j++) {
                 K[i][j] = M[i][j];
             }
             for (int k = b + 1; k < M.get_columns(); k++) {
@@ -158,7 +158,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
             }
         }
     for (int i = a + 1; i < M.get_rows(); i++) {
-        for (int j = 0; j < b - 1; j++) {
+        for (int j = 0; j < b; j++) {
             K[i][j] = M[i][j];
         }
         for (int k = b + 1; k < M.get_columns(); k++) {
@@ -195,15 +195,20 @@ Matrix<T> Matrix<T>::Inverse() {
         }
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
+    for (int i = 0; i < K.get_rows(); i++) {
+        for (int j = 0; j < K.get_columns(); j++) {
+            M[i][j] = K[j][i];
+        }
+    }
     double Det = det(*this);
     double Detrev;
     for (int i = 0; i < (*this).get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-            Detrev = K[i][j] / Det;
-            M[i][j] = Detrev;
+            Detrev = M[i][j] / Det;
+            K[i][j] = Detrev;
         }
     }
-    return M;
+    return K;
 }
 template<class T>
 bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
