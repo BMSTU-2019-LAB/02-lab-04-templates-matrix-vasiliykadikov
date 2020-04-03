@@ -95,6 +95,10 @@ Matrix<T>& Matrix<T>::operator =(Matrix<T> &M) {
     delete[] p;
     this->n = M.get_rows();
     this->m = M.get_columns();
+    p = new * T[n];
+    for (int i = 0; i < (*this).get_rows(); i++) {
+        p[i] = new T[m];
+    }
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
             this->p[i][j] = M[i][j];
