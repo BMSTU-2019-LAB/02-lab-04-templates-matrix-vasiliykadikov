@@ -179,8 +179,8 @@ double Matrix<T>::det(Matrix<T> M) {
         return Det;
     }
     for (int i = 0; i < M.get_rows(); i++) {
-        Det += M[0][i] * pow(-1, i)
-             * det(deletemn(*this, 0, i));
+     Det += 
+         M[0][i] * pow(-1, i) * det(deletemn(*this, 0, i));
    }
     return Det;
 }
@@ -195,7 +195,7 @@ Matrix<T> Matrix<T>::Inverse() {
     for (int i = 0; i < ((*this).get_rows()); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
          Ad = det(deletemn(*this, i, j));
-         K[i][j] = pow(-1, i+j) * (*this)[i][j] * Ad;
+         K[i][j] = pow(-1, i+j) * Ad;
         }
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
