@@ -199,10 +199,11 @@ Matrix<T> Matrix<T>::Inverse() {
     }
     Matrix<T> M((*this).get_rows(), (*this).get_columns());
     double Det = det(*this);
-    double Detrev = 1 / Det;
+    double Detrev;
     for (int i = 0; i < (*this).get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
-            M[i][j] = Detrev * K[i][j];
+            Detrev = K[i][j] / Det;
+            M[i][j] = Detrev;
         }
     }
     return M;
