@@ -176,7 +176,7 @@ double Matrix<T>::det(Matrix<T> M) {
     }
     for (int i = 0; i < M.get_rows(); i++) {
      Det +=
-         M[0][i] * pow(-1, i) * det(deletemn(*this, 0, i));
+         M[0][i] * pow(-1, i) * det(deletemn(M, 0, i));
    }
     return Det;
 }
