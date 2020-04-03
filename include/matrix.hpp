@@ -135,13 +135,10 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> &M) {
         return a;
     }
     Matrix<T> K((*this).get_rows(), M.get_columns());
-    int n = 0;
-    for (int i = 0; i < ((*this).get_rows()); i++) {
-        for (int j = 0; j < M.get_columns(); j++) {
-            n = 0;
-            K[i][j] = 0;
-            for (int z=0; z < M.get_rows(); z++) {
-                K[i][j] = K[i][j] + (*this)[i][z] * M[z][j];
+    for (int i = 0; i < K.get_rows(); i++) {
+        for (int j = 0; j < K.get_columns(); j++) {
+            for (int z=0; z < (*this).get_columns(); z++) {
+                K[i][j] += (*this)[i][z] * M[z][j];
             }
         }
     }
