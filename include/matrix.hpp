@@ -212,7 +212,7 @@ Matrix<T> Matrix<T>::Inverse() {
 }
 template<class T>
 bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
-    if (m.get_rows != M.get_rows() &&
+    if (m.get_rows() != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
@@ -224,7 +224,7 @@ bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
 }
 template<class T>
 bool operator ==(const Matrix<double> &M, const Matrix<double> &m) {
-    if (m.get_rows != M.get_rows() &&
+    if (m.get_rows() != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
@@ -239,7 +239,7 @@ bool operator ==(const Matrix<double> &M, const Matrix<double> &m) {
 }
 template<class T>
 bool operator ==(const Matrix<float> &M, const Matrix<float> &m) {
-    if (m.get_rows != M.get_rows() &&
+    if (m.get_rows() != M.get_rows() &&
         m.get_columns() != M.get_columns())
         return false;
     for (int i = 0; i < M.get_rows(); i++) {
