@@ -49,12 +49,14 @@ int Matrix<T>::get_columns() const {
 }
 template<class T>
 Matrix<T>::Matrix(int m, int n) {
-    this -> p = reinterpret_cast<T**>(malloc(n * sizeof(T*)));
     this->n = n;
     this->m = m;
+    p = new T *[n];
     for (int i = 0; i < n; i++) {
-        p[i] = reinterpret_cast<T*>(malloc(m * sizeof(T)));
-        for (int j = 0; j < m; j++) {
+        p[i] = new T[m];
+    }
+        for (int i = 0; i < n; i++) {
+            for (int j=0; j < m; j++) {
             p[i][j] = 0;
         }
     }
