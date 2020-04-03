@@ -20,12 +20,12 @@ TEST(Matrix, CheckRavno) {
     m[1][0] = 3;
     m[1][1] = 4;
     Matrix<int> c = m;
-    ASSERT_EQ(s.get_rows(), 2);
-    ASSERT_EQ(s.get_columns(), 2);
-    EXPECT_EQ(s[0][0], 1);
-    EXPECT_EQ(s[0][1], 2);
-    EXPECT_EQ(s[1][0], 3);
-    EXPECT_EQ(s[1][1], 4);
+    ASSERT_EQ(c.get_rows(), 2);
+    ASSERT_EQ(c.get_columns(), 2);
+    EXPECT_EQ(c[0][0], 1);
+    EXPECT_EQ(c[0][1], 2);
+    EXPECT_EQ(c[1][0], 3);
+    EXPECT_EQ(c[1][1], 4);
 }
 
 TEST(Matrix, Init) {
