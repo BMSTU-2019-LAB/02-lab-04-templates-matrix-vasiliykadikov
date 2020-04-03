@@ -107,8 +107,8 @@ Matrix<T> Matrix<T>::operator+(Matrix<T> &M) {
     }
     Matrix<T> K(M.get_rows(), M.get_columns());
     for (int i = 0; i < M.get_rows(); i++) {
-        for (int j = 0; j < (*this).get_columns(); j++) {
-            K[i][j] = (*this)[i][j] + M[i][j];
+        for (int j = 0; j < M.get_columns(); j++) {
+            K[i][j] = p[i][j] + M[i][j];
         }
     }
     return K;
