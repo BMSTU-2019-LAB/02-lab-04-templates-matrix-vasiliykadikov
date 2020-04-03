@@ -48,7 +48,7 @@ int Matrix<T>::get_columns() const {
     return m;
 }
 template<class T>
-Matrix<T>::Matrix(int m, int n) {
+Matrix<T>::Matrix(int n, int m) {
     this->n = n;
     this->m = m;
     p = new T *[n];
