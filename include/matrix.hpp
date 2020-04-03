@@ -151,7 +151,7 @@ Matrix<T> Matrix<T>::deletemn(Matrix<T> &M, int row, int column) {
    int b = column;
         for (int i = 0; i < M.get_rows(); i++) {
             if (i != a) {
-                for (int j = 0; j < M.get_columns; j++) {
+                for (int j = 0; j < M.get_columns(); j++) {
                     if (i != b) {
                         K[i][j] = M[i][j];
                     }
