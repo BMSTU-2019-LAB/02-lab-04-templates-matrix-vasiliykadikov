@@ -34,7 +34,7 @@ public:
 };
 template<class T>
 Matrix<T>::~Matrix(){
-    for (int i = 0; i < p.get_rows(); i++){
+    for (int i = 0; i < m; i++){
         free(p[i]);
     }
     free(p);
