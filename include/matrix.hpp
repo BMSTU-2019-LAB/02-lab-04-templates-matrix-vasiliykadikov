@@ -220,7 +220,7 @@ bool operator ==(const Matrix<T> &M, const Matrix<T> &m) {
     }
     return true;
 }
-template<class T>
+template<>
 bool operator ==(const Matrix<double> &M, const Matrix<double> &m) {
     if (m.get_rows() != M.get_rows() &&
         m.get_columns() != M.get_columns())
@@ -235,7 +235,7 @@ bool operator ==(const Matrix<double> &M, const Matrix<double> &m) {
     }
     return true;
 }
-template<class T>
+template<>
 bool operator ==(const Matrix<float> &M, const Matrix<float> &m) {
     if (m.get_rows() != M.get_rows() &&
         m.get_columns() != M.get_columns())
