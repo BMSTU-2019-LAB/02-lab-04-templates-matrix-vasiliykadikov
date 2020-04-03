@@ -37,7 +37,7 @@ Matrix<T>::~Matrix(){
     for (int i = 0; i < n; i++){
         delete[] p[i];
     }
-    delete [p];
+    delete[] p;
 }
 template<class T>
 int Matrix<T>::get_rows() const {
