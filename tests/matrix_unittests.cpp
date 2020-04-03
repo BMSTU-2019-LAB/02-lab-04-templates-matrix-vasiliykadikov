@@ -148,7 +148,7 @@ TEST(Matrix, Mult) {
     auto s = m * c;
 
     ASSERT_EQ(s.get_rows(), 3);
-    ASSERT_EQ(s.get_rows(), 2);
+    ASSERT_EQ(s.get_columns(), 2);
     /*
     2 0
     2 2
