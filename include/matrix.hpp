@@ -89,6 +89,8 @@ T* Matrix<T>::operator [](size_t i) const {
 }
 template<class T>
 Matrix<T>& Matrix<T>::operator =(Matrix<T> &M) {
+    this->n = M.get_rows();
+    this->m= <M.get_columns();
     for (int i = 0; i < M.get_rows(); i++) {
         for (int j = 0; j < (*this).get_columns(); j++) {
             (*this)[i][j] = M[i][j];
