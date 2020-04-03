@@ -4,7 +4,7 @@
 
 #include <matrix.hpp>
 
-TEST(Matrix, Checkrows) {
+TEST(Matrix, CheckRows) {
     Matrix<int> m(2, 2);
     m[0][0] = 1;
     m[0][1] = 2;
@@ -12,6 +12,22 @@ TEST(Matrix, Checkrows) {
     m[1][1] = 4;
     ASSERT_EQ(m.get_rows(), 2);
 }
+
+TEST(Matrix, CheckRavno) {
+    Matrix<int> m(2, 2);
+    m[0][0] = 1;
+    m[0][1] = 2;
+    m[1][0] = 3;
+    m[1][1] = 4;
+    Matrix<int> c = m;
+    ASSERT_EQ(s.get_rows(), 2);
+    ASSERT_EQ(s.get_columns(), 2);
+    EXPECT_EQ(s[0][0], 1);
+    EXPECT_EQ(s[0][1], 2);
+    EXPECT_EQ(s[1][0], 3);
+    EXPECT_EQ(s[1][1], 4);
+}
+
 TEST(Matrix, Init) {
     Matrix<int> m(2, 2);
     m[0][0] = 1;
