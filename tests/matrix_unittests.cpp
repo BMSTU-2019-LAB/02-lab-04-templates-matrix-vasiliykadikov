@@ -4,6 +4,30 @@
 
 #include <matrix.hpp>
 
+TEST(Matrix, CheckRows) {
+    Matrix<int> m(2, 2);
+    m[0][0] = 1;
+    m[0][1] = 2;
+    m[1][0] = 3;
+    m[1][1] = 4;
+    ASSERT_EQ(m.get_rows(), 2);
+}
+
+TEST(Matrix, CheckRavno) {
+    Matrix<int> m(2, 2);
+    m[0][0] = 1;
+    m[0][1] = 2;
+    m[1][0] = 3;
+    m[1][1] = 4;
+    Matrix<int> c = m;
+    ASSERT_EQ(c.get_rows(), 2);
+    ASSERT_EQ(c.get_columns(), 2);
+    EXPECT_EQ(c[0][0], 1);
+    EXPECT_EQ(c[0][1], 2);
+    EXPECT_EQ(c[1][0], 3);
+    EXPECT_EQ(c[1][1], 4);
+}
+
 TEST(Matrix, Init) {
     Matrix<int> m(2, 2);
     m[0][0] = 1;
@@ -41,8 +65,8 @@ TEST(Matrix, Add) {
 
     Matrix<int> c = m;
 
-    Matrix<int> s = m + c;
-    Matrix<int> s2 = c + c;
+    Matrix<int> s = (m + c);
+    Matrix<int> s2 = (c + c);
     EXPECT_EQ(s2, s);
 
     ASSERT_EQ(s.get_rows(), 2);
@@ -146,14 +170,14 @@ TEST(Matrix, Mult) {
 TEST(Matrix, Inverse) {
   Matrix<double> m(5, 5);
 
-  for (size_t i = 0; i < m.Rows(); ++i) {
-    for (size_t j = 0; j < m.Rows(); ++j) {
+  for (int i = 0; i < m.get_rows(); ++i) {
+    for (int j = 0; j < m.get_rows(); ++j) {
       m[i][j] = 1 + (i*j)%7;
-    }   
+    }
   }
 
   Matrix<double> I(5, 5);
-  for (size_t i = 0; i < m.Rows(); ++i) {
+  for (int i = 0; i < m.get_rows(); ++i) {
     I[i][i] = 1.;
   }
 
